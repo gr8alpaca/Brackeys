@@ -1,0 +1,115 @@
+[gd_scene load_steps=11 format=3 uid="uid://3eocclf8ybma"]
+
+[ext_resource type="AnimationLibrary" uid="uid://bt0k2kdnkt030" path="res://resources/animations/character_animations.res" id="1_lgn87"]
+[ext_resource type="Script" path="res://scripts/Actors/combatant.gd" id="1_ryc0k"]
+[ext_resource type="Script" path="res://scripts/Actors/stats.gd" id="2_tu14p"]
+[ext_resource type="Texture2D" uid="uid://cc5lxsjqeg112" path="res://art/GandalfHardcore Character Asset Pack/Character skin colors/Female Skin1.png" id="2_u8c4c"]
+[ext_resource type="Texture2D" uid="uid://bjov8mp6256po" path="res://art/GandalfHardcore Character Asset Pack/Female Clothing/Black Thigh-High Boots.png" id="3_rm5gi"]
+[ext_resource type="Texture2D" uid="uid://d3sovywscgr4j" path="res://art/GandalfHardcore Character Asset Pack/Female Clothing/Long dress purple.png" id="4_juhpo"]
+[ext_resource type="Texture2D" uid="uid://j5eypip1ctah" path="res://art/GandalfHardcore Character Asset Pack/Female Hair/Female Hair4.png" id="5_gm7om"]
+[ext_resource type="Texture2D" uid="uid://co6s321oh6bhf" path="res://art/GandalfHardcore Character Asset Pack/Female Hand/Golden Sword.png" id="8_s11mj"]
+[ext_resource type="Theme" uid="uid://bcib02oddhpm5" path="res://resources/default_theme.tres" id="9_0nvvg"]
+
+[sub_resource type="Resource" id="Resource_0a5r2"]
+script = ExtResource("2_tu14p")
+base_health = 20.0
+base_attack = 10.0
+base_defense = 10.0
+
+[node name="Combatant" type="Node2D" node_paths=PackedStringArray("anim", "ui")]
+script = ExtResource("1_ryc0k")
+stats = SubResource("Resource_0a5r2")
+anim = NodePath("SpriteLayers/AnimationPlayer")
+ui = NodePath("CombatantUI")
+current_animation = ""
+
+[node name="SpriteLayers" type="Node2D" parent="."]
+y_sort_enabled = true
+scale = Vector2(2, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteLayers"]
+libraries = {
+"": ExtResource("1_lgn87")
+}
+autoplay = "idle"
+
+[node name="Skin" type="Sprite2D" parent="SpriteLayers"]
+y_sort_enabled = true
+texture = ExtResource("2_u8c4c")
+flip_h = true
+hframes = 10
+vframes = 7
+
+[node name="Boots" type="Sprite2D" parent="SpriteLayers"]
+y_sort_enabled = true
+texture = ExtResource("3_rm5gi")
+flip_h = true
+hframes = 10
+vframes = 7
+
+[node name="Torso" type="Sprite2D" parent="SpriteLayers"]
+y_sort_enabled = true
+texture = ExtResource("4_juhpo")
+flip_h = true
+hframes = 10
+vframes = 7
+
+[node name="Hair" type="Sprite2D" parent="SpriteLayers"]
+y_sort_enabled = true
+texture = ExtResource("5_gm7om")
+flip_h = true
+hframes = 10
+vframes = 7
+
+[node name="Weapon" type="Sprite2D" parent="SpriteLayers"]
+y_sort_enabled = true
+texture = ExtResource("8_s11mj")
+flip_h = true
+hframes = 10
+vframes = 7
+
+[node name="CombatantUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReferenceRect" type="ReferenceRect" parent="CombatantUI"]
+layout_mode = 0
+offset_left = -48.0
+offset_top = -64.0
+offset_right = 48.0
+offset_bottom = -28.0
+border_color = Color(0.806087, 0.249675, 0.817729, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CombatantUI/ReferenceRect"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 2
+
+[node name="ManaBar" type="ProgressBar" parent="CombatantUI/ReferenceRect/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("9_0nvvg")
+theme_type_variation = &"ManaBar"
+value = 100.0
+rounded = true
+
+[node name="HealthBar" type="ProgressBar" parent="CombatantUI/ReferenceRect/VBoxContainer"]
+texture_repeat = 2
+custom_minimum_size = Vector2(84, 10)
+layout_mode = 2
+theme = ExtResource("9_0nvvg")
+step = 1.0
+value = 1.0
+metadata/_edit_lock_ = true

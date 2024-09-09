@@ -1,0 +1,58 @@
+[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://bj8gs1ftcdxtm"]
+
+[ext_resource type="Texture2D" uid="uid://osh3p815p0a6" path="res://art/BattleBG/Stormy_Mountains_Rain/c26e74acb37a41d19b348cc45cb18a84Z1Zc5Bf4syevZ8pO-0.png" id="1_2gg7v"]
+[ext_resource type="Texture2D" uid="uid://c0pjxabvgp02r" path="res://art/BattleBG/Stormy_Mountains_Rain/c26e74acb37a41d19b348cc45cb18a84Z1Zc5Bf4syevZ8pO-1.png" id="2_w1tbm"]
+[ext_resource type="Texture2D" uid="uid://3cn3afokdowl" path="res://art/BattleBG/Stormy_Mountains_Rain/c26e74acb37a41d19b348cc45cb18a84Z1Zc5Bf4syevZ8pO-2.png" id="3_f7f1l"]
+[ext_resource type="Texture2D" uid="uid://dw5h3puefb41k" path="res://art/BattleBG/Stormy_Mountains_Rain/c26e74acb37a41d19b348cc45cb18a84Z1Zc5Bf4syevZ8pO-3.png" id="4_b8j64"]
+[ext_resource type="Texture2D" uid="uid://c86any622iqqk" path="res://art/BattleBG/Stormy_Mountains_Rain/c26e74acb37a41d19b348cc45cb18a84Z1Zc5Bf4syevZ8pO-4.png" id="5_frdj6"]
+[ext_resource type="Texture2D" uid="uid://q8ltijoobgfr" path="res://art/BattleBG/Stormy_Mountains_Rain/c26e74acb37a41d19b348cc45cb18a84Z1Zc5Bf4syevZ8pO-5.png" id="6_7njt2"]
+[ext_resource type="Texture2D" uid="uid://cco3cg32oo01v" path="res://art/BattleBG/Stormy_Mountains_Rain/c26e74acb37a41d19b348cc45cb18a84Z1Zc5Bf4syevZ8pO-6.png" id="7_pmkbx"]
+[ext_resource type="Texture2D" uid="uid://b53r0vnsk58dn" path="res://art/BattleBG/Stormy_Mountains_Rain/c26e74acb37a41d19b348cc45cb18a84Z1Zc5Bf4syevZ8pO-7.png" id="8_y54s8"]
+[ext_resource type="Texture2D" uid="uid://b7umhk58j32r6" path="res://art/BattleBG/Stormy_Mountains_Rain/c26e74acb37a41d19b348cc45cb18a84Z1Zc5Bf4syevZ8pO-8.png" id="9_3wr2j"]
+[ext_resource type="Texture2D" uid="uid://bfatpcj4u7wae" path="res://art/BattleBG/Stormy_Mountains_Rain/c26e74acb37a41d19b348cc45cb18a84Z1Zc5Bf4syevZ8pO-9.png" id="10_erho8"]
+[ext_resource type="Texture2D" uid="uid://c7xe8enaji2fk" path="res://art/BattleBG/Stormy_Mountains_Rain/c26e74acb37a41d19b348cc45cb18a84Z1Zc5Bf4syevZ8pO-10.png" id="11_5dkle"]
+[ext_resource type="Texture2D" uid="uid://bncjpu6k6q4v7" path="res://art/BattleBG/Stormy_Mountains_Rain/c26e74acb37a41d19b348cc45cb18a84Z1Zc5Bf4syevZ8pO-11.png" id="12_h0nq1"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2gg7v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_w1tbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_f7f1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_b8j64")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_frdj6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7njt2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pmkbx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_y54s8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3wr2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_erho8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5dkle")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_h0nq1")
+}],
+"loop": true,
+"name": &"rain",
+"speed": 40.0
+}]

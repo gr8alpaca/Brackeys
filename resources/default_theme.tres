@@ -1,0 +1,16 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bcib02oddhpm5"]
+
+[ext_resource type="StyleBox" uid="uid://dymunlej3wdke" path="res://resources/styleboxes/combatant_ui/mana_empty.tres" id="1_2750b"]
+[ext_resource type="StyleBox" uid="uid://ccfifpjld1kug" path="res://resources/styleboxes/combatant_ui/health_empty.tres" id="1_pbtxm"]
+[ext_resource type="FontFile" uid="uid://dmv37oqxk64a" path="res://resources/Sta.Toasty_font.ttf" id="1_wk2xu"]
+[ext_resource type="StyleBox" uid="uid://dnrgcn2v6sg4r" path="res://resources/styleboxes/combatant_ui/mana_fill.tres" id="2_6fi2r"]
+[ext_resource type="StyleBox" uid="uid://cgo5rr7ngfqda" path="res://resources/styleboxes/combatant_ui/health_fill.tres" id="2_kmrd7"]
+
+[resource]
+default_font = ExtResource("1_wk2xu")
+default_font_size = 8
+ManaBar/base_type = &"ProgressBar"
+ManaBar/styles/background = ExtResource("1_2750b")
+ManaBar/styles/fill = ExtResource("2_6fi2r")
+ProgressBar/styles/background = ExtResource("1_pbtxm")
+ProgressBar/styles/fill = ExtResource("2_kmrd7")
