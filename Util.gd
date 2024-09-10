@@ -26,7 +26,10 @@ func _run() -> void:
 	}
 	const DIR:="res://art/wolf_remake/"
 	
-	
+	#for name: StringName in CHARACTER_ANIMATIONS.get_animation_list():
+		#var anim: Animation = CHARACTER_ANIMATIONS.get_animation(name)
+		#anim.track_set_path(0, ".:frame")
+	#return
 	
 	for h_frame: int in ANIMATION_FRAMES.size():
 		

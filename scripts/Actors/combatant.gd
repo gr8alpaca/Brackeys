@@ -31,7 +31,6 @@ func _set(property: StringName, value: Variant) -> bool:
             if anim and value != anim.current_animation:
                 anim.play(value)
           
-
     return false
 
 

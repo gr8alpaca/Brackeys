@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://ddegleaowh1ke"]
+[gd_scene load_steps=12 format=3 uid="uid://ddegleaowh1ke"]
 
+[ext_resource type="Script" path="res://scenes/battle.gd" id="1_4fkr6"]
 [ext_resource type="PackedScene" uid="uid://3eocclf8ybma" path="res://scenes/character.tscn" id="1_ajy51"]
 [ext_resource type="SpriteFrames" uid="uid://bj8gs1ftcdxtm" path="res://resources/animations/rain_sprite_frames.tres" id="9_a510d"]
 [ext_resource type="Texture2D" uid="uid://dbo63j56ueuxl" path="res://art/BattleBG/Stormy_Mountains_Background.png" id="13_3lv5y"]
@@ -11,8 +12,12 @@
 [ext_resource type="Texture2D" uid="uid://pbuywkhsuej6" path="res://art/BattleBG/Stormy_Mountains_Mountain_2.png" id="16_2r0ne"]
 [ext_resource type="Texture2D" uid="uid://f0gkaqv6c7bn" path="res://art/BattleBG/Stormy_Mountains_Background_Cloud_2.png" id="16_x1k28"]
 
-[node name="battle" type="Node2D"]
+[node name="battle" type="Node2D" node_paths=PackedStringArray("cam", "party", "player")]
 y_sort_enabled = true
+script = ExtResource("1_4fkr6")
+cam = NodePath("party/Camera2D")
+party = NodePath("party")
+player = NodePath("party/Actor")
 
 [node name="Background" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -139,15 +144,25 @@ metadata/_edit_lock_ = true
 [node name="party" type="Node2D" parent="."]
 
 [node name="Actor" parent="party" instance=ExtResource("1_ajy51")]
-position = Vector2(112, 272)
+position = Vector2(112, 288)
+current_animation = "walk"
 
 [node name="Camera2D" type="Camera2D" parent="party"]
-
-[node name="marker_2d" type="Marker2D" parent="."]
-position = Vector2(320, 160)
+offset = Vector2(320, 0)
+limit_top = 0
+limit_bottom = 0
 
 [node name="dueler" type="Node" parent="."]
 
 [node name="battle_ui" type="CanvasLayer" parent="."]
 
 [node name="queue" type="Node" parent="."]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(200, 0)
+energy = 0.6
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.5)
