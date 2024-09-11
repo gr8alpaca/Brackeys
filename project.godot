@@ -52,6 +52,8 @@ window/stretch/aspect="keep_height"
 
 folder_colors={
 "res://art/": "pink",
+"res://art/UI/ClassIcons16x16/": "orange",
+"res://art/UI/Icons/": "purple",
 "res://resources/": "gray",
 "res://scenes/": "blue",
 "res://scripts/": "yellow"
@@ -60,7 +62,7 @@ folder_colors={
 [gui]
 
 theme/custom="res://resources/default_theme.tres"
-theme/custom_font="res://resources/Sta.Toasty_font.ttf"
+theme/custom_font="res://resources/SeuratCapie Pro B.otf"
 
 [rendering]
 

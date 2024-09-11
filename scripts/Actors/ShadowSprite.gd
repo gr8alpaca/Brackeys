@@ -1,14 +1,19 @@
 @tool
 class_name ShadowSprite extends Sprite2D
-const TRANSFORM: Transform2D = Transform2D(Vector2(1, 0), Vector2(0.7, 0.3), Vector2(-23, 23))
 
-@export var base_transform: Transform2D = Transform2D():
-    set(val):
-        base_transform = val
-        transform = val
+const TRANSFORM: Transform2D = Transform2D(Vector2(1, 0), Vector2(0.7, 0.3), Vector2(-23, 23))
+const MODULATE: Color = Color(0, 0, 0, 0.515)
 
 @export var sprite: Sprite2D: set = set_sprite
-    
+
+
+func _init() -> void:
+    show_behind_parent = true
+    if transform == Transform2D():
+        transform = TRANSFORM
+    if modulate == Color.WHITE:
+        modulate = MODULATE
+
 
 func set_sprite(val: Sprite2D) -> void:
     if sprite == val: return
@@ -28,37 +33,40 @@ func set_sprite(val: Sprite2D) -> void:
 
     visible = sprite != null
 
+
 func _enter_tree() -> void:
     if not get_parent() is Sprite2D: return
+    sprite = get_parent()
 
-    var sprite: Sprite2D = get_parent()
-    sprite.frame_changed.connect(_on_frame_changed.bind(sprite))
-    sprite.texture_changed.connect(_on_texture_changed.bind(sprite), CONNECT_DEFERRED)
-    texture = create_image_shadow(sprite.texture.get_image())
-    hframes = sprite.hframes
-    vframes = sprite.vframes
-    frame = sprite.frame
+    # var sprite: Sprite2D = get_parent()
+    # sprite.frame_changed.connect(_on_frame_changed.bind(sprite))
+    # sprite.texture_changed.connect(_on_texture_changed.bind(sprite), CONNECT_DEFERRED)
+    # texture = create_image_shadow(sprite.texture.get_image())
+    # hframes = sprite.hframes
+    # vframes = sprite.vframes
+    # frame = sprite.frame
 
 
 func _exit_tree() -> void:
-    if not get_parent() is Sprite2D: return
+    # if not get_parent() is Sprite2D: return
+    sprite = null
 
-    var sprite: Sprite2D = get_parent()
-    sprite.frame_changed.disconnect(_on_frame_changed)
-    sprite.texture_changed.disconnect(_on_texture_changed)
+    # var sprite: Sprite2D = get_parent()
+    # sprite.frame_changed.disconnect(_on_frame_changed)
+    # sprite.texture_changed.disconnect(_on_texture_changed)
     
-    texture = null
-    hframes = 1
-    vframes = 1
-    frame = 0
+    # texture = null
+    # hframes = 1
+    # vframes = 1
+    # frame = 0
 
 
-func _on_frame_changed(sprite: Sprite2D) -> void:
+func _on_frame_changed() -> void:
     flip_h = sprite.flip_h
     frame = sprite.frame
 
 
-func _on_texture_changed(sprite: Sprite2D) -> void:
+func _on_texture_changed() -> void:
     texture = create_image_shadow(sprite.texture.get_image())
 
 
@@ -74,7 +82,7 @@ func create_image_shadow(img: Image) -> Texture2D:
 func _get_configuration_warnings() -> PackedStringArray:
     var warnings := PackedStringArray()
     if not get_parent() is Sprite2D:
-        warnings.append("Shadow is not child of Sprite2D.")
+        warnings.append("Sprite2D not set.")
     return warnings
 
 

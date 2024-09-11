@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Technique" load_steps=3 format=3 uid="uid://doyfvowu50ql8"]
+
+[ext_resource type="Script" path="res://scripts/combat/technique.gd" id="1_3ipol"]
+[ext_resource type="Texture2D" uid="uid://4rp4hq8fxcwa" path="res://art/UI/Icons/Techniques/Bite.png" id="1_pyisl"]
+
+[resource]
+script = ExtResource("1_3ipol")
+name = "Bite"
+icon = ExtResource("1_pyisl")
+cost = 23
+range = null
+force = 21.0
+sharp = 16.0
+hit = null

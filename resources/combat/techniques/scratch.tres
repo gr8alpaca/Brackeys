@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Technique" load_steps=3 format=3 uid="uid://budceak4a474d"]
+
+[ext_resource type="Texture2D" uid="uid://dw24omg08tk7b" path="res://art/UI/Icons/Techniques/Slash.png" id="1_i8l3o"]
+[ext_resource type="Script" path="res://scripts/combat/technique.gd" id="1_q22tj"]
+
+[resource]
+script = ExtResource("1_q22tj")
+name = "Scratch"
+icon = ExtResource("1_i8l3o")
+cost = 15
+range = 1
+force = 30.0
+sharp = 10.0
+hit = -3.0

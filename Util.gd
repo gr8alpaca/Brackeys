@@ -1,5 +1,21 @@
 @tool
 extends EditorScript
+const FRAME_LENGTH: float = .15
+const START_FRAME: int = 0
+const TOTAL_FRAMES: int = 8
+const ANIMATIONS:= {
+	"air_idle": 16,
+	"attack": 51,
+	"idleA":41,
+	"idleB":21,
+	"jump":61,
+	"land":21,
+	"run": 41,
+	"walk":31,
+	}
+
+
+const WOLF_DIR:="res://art/wolf_remake/"
 const WOLF_ANIMATIONS : AnimationLibrary = preload("res://resources/animations/wolf_animations.tres")
 const CHARACTER_ANIMATIONS : AnimationLibrary = preload("res://resources/animations/character_animations.res")
 
@@ -7,39 +23,11 @@ const SPRITES: PackedStringArray = ["Skin", "Boots", "Torso", "Hair"]
 const ANIMATION_FRAMES: PackedInt32Array = [5,8,8,4,4,6,9]
 const NAMES: PackedStringArray = ["idle", "walk", "run", "jump", "fall", "attack", "die"]
 
+
 func _run() -> void:
 	var scene: = get_scene()
-	#const name = "run"
-	const FRAME_LENGTH:= .15
-	const START_FRAME: int = 0
-	const TOTAL_FRAMES: int = 8
-	const ANIMATIONS:= {
-		"air_idle": 16,
-		"attack": 51,
-		"idleA":41,
-		"idleB":21,
-		"jump":61,
-		#"jump_and_land":70,
-		"land":21,
-		"run": 41,
-		"walk":31,
-	}
-	const DIR:="res://art/wolf_remake/"
 	
-	#for name: StringName in CHARACTER_ANIMATIONS.get_animation_list():
-		#var anim: Animation = CHARACTER_ANIMATIONS.get_animation(name)
-		#anim.track_set_path(0, ".:frame")
-	#return
 	
-	for h_frame: int in ANIMATION_FRAMES.size():
-		
-		var start: int = (h_frame*10)
-		
-		var anim: Animation = CHARACTER_ANIMATIONS.get_animation(NAMES[h_frame])
-		create_property_animation(["Weapon"],start, ANIMATION_FRAMES[h_frame], FRAME_LENGTH, anim)
-		
-		#var anims:= ",".join(PackedStringArray())
-		#print(anims)
 
 
 

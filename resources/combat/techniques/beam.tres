@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Technique" load_steps=3 format=3 uid="uid://bw662t5uyxxdp"]
+
+[ext_resource type="Texture2D" uid="uid://cdof58mtlgpho" path="res://art/UI/Icons/Techniques/Beam.png" id="1_kuqww"]
+[ext_resource type="Script" path="res://scripts/combat/technique.gd" id="1_waq0k"]
+
+[resource]
+script = ExtResource("1_waq0k")
+name = "Beam"
+icon = ExtResource("1_kuqww")
+cost = 25
+range = 1
+force = 25.0
+sharp = 14.0
+hit = 23.0
