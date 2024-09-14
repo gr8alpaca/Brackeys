@@ -2,13 +2,18 @@
 class_name Attack extends RefCounted
 
 
+
+
+signal attack_started
+
+signal hit(attack_result: int)
+signal damaged(amount: float)
+
+signal attack_finished
+
 var technique: Technique
 
-var attacker: Combatant:
-    set(val):
-        attacker = val
-        att_stats = attacker.stats if attacker else null
-
+var attacker: Combatant
 var att_stats: Stats
 
 var defender: Combatant:
@@ -18,10 +23,20 @@ var defender: Combatant:
 
 var def_stats: Stats
 
+enum {NONE = 0, DAMAGED, MISSED, BLOCKED}
+var result: int = NONE
 
-func set_info(attacker: Combatant = null, technique: Technique = null) -> Attack:
-    if attacker:
-        self.attacker = attacker
-    if technique:
-        self.technique = technique
+func set_attacker(attacker: Combatant) -> Attack:
+    self.attacker = attacker
+    att_stats = attacker.stats
     return self
+
+func set_defender(defender: Combatant) -> Attack:
+    self.defender = defender
+    def_stats = defender.stats
+    return self
+
+func set_technique(technique: Technique) -> Attack:
+    self.technique = technique
+    return self
+

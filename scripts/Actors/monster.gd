@@ -1,3 +1,2 @@
 @tool
-
-extends Combatant
+class_name Monster extends Combatant

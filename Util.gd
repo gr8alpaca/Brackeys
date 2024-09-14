@@ -26,7 +26,8 @@ const NAMES: PackedStringArray = ["idle", "walk", "run", "jump", "fall", "attack
 
 func _run() -> void:
 	var scene: = get_scene()
-	
+	for i in 11:
+		printt(i, "%3.3f" % ease(float(i)/10.0, 1.8))
 	
 
 

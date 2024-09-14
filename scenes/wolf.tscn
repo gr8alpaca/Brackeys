@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b1lapj1e22dd8" path="res://art/wolf_remake/idleB.png" id="4_asvr7"]
 [ext_resource type="Resource" uid="uid://doyfvowu50ql8" path="res://resources/combat/techniques/Bite.tres" id="4_gaq37"]
 [ext_resource type="AnimationLibrary" uid="uid://p6tp74o4y0nc" path="res://resources/animations/wolf_animations.tres" id="4_pkqot"]
-[ext_resource type="Theme" uid="uid://bcib02oddhpm5" path="res://resources/default_theme.tres" id="5_5t5u8"]
+[ext_resource type="Script" path="res://scripts/Actors/CombatHandler.gd" id="8_w6ucv"]
 
 [sub_resource type="Resource" id="Resource_nwedx"]
 script = ExtResource("2_2ttjp")
@@ -16,71 +16,28 @@ base_speed = 100.0
 base_skill = 100.0
 base_defense = 100.0
 guts_rate = 13.0
-
-[node name="wolf" type="Node2D" node_paths=PackedStringArray("anim", "ui")]
-script = ExtResource("1_sr02y")
-stats = SubResource("Resource_nwedx")
 techniques = Array[ExtResource("3_e5mpv")]([ExtResource("4_gaq37")])
+
+[node name="wolf" type="Node2D" node_paths=PackedStringArray("anim", "combat_handler")]
+script = ExtResource("1_sr02y")
 anim = NodePath("AnimationPlayer")
-ui = NodePath("CombatantUI")
+combat_handler = NodePath("CombatHandler")
+stats = SubResource("Resource_nwedx")
 current_animation = ""
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": ExtResource("4_pkqot")
 }
-autoplay = "idleB"
+autoplay = "idle"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_asvr7")
 hframes = 8
 vframes = 8
+frame = 3
 
-[node name="CombatantUI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="ReferenceRect" type="ReferenceRect" parent="CombatantUI"]
-layout_mode = 0
-offset_left = -48.0
-offset_top = -80.0
-offset_right = 48.0
-offset_bottom = -44.0
-border_color = Color(0.806087, 0.249675, 0.817729, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CombatantUI/ReferenceRect"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-alignment = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="ManaBar" type="ProgressBar" parent="CombatantUI/ReferenceRect/VBoxContainer"]
-visible = false
-layout_mode = 2
-theme = ExtResource("5_5t5u8")
-theme_type_variation = &"ManaBar"
-value = 100.0
-rounded = true
-
-[node name="HealthBar" type="ProgressBar" parent="CombatantUI/ReferenceRect/VBoxContainer"]
-texture_repeat = 2
-custom_minimum_size = Vector2(84, 10)
-layout_mode = 2
-theme = ExtResource("5_5t5u8")
-step = 1.0
-value = 1.0
-metadata/_edit_lock_ = true
+[node name="CombatHandler" type="Node" parent="."]
+script = ExtResource("8_w6ucv")
+max_wander_length = 10.0
+position_locked = null

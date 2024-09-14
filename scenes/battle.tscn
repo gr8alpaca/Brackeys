@@ -1,60 +1,102 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddegleaowh1ke"]
+[gd_scene load_steps=28 format=3 uid="uid://ddegleaowh1ke"]
 
 [ext_resource type="Script" path="res://scenes/battle.gd" id="1_4fkr6"]
-[ext_resource type="PackedScene" uid="uid://3eocclf8ybma" path="res://scenes/character.tscn" id="1_ajy51"]
 [ext_resource type="Texture2D" uid="uid://cebewiuype3ai" path="res://resources/LightGradient.tres" id="2_on6ei"]
-[ext_resource type="Texture2D" uid="uid://co7kx1od315kl" path="res://art/UI/UI.png" id="3_5rlkv"]
+[ext_resource type="Script" path="res://scenes/conductor.gd" id="3_6btd8"]
+[ext_resource type="Theme" uid="uid://bcib02oddhpm5" path="res://resources/default_theme.tres" id="4_pbe1p"]
+[ext_resource type="Script" path="res://scenes/battle_ui.gd" id="4_s5udl"]
+[ext_resource type="Texture2D" uid="uid://co7kx1od315kl" path="res://art/UI/UI.png" id="5_lhkjh"]
 [ext_resource type="SpriteFrames" uid="uid://bj8gs1ftcdxtm" path="res://resources/animations/rain_sprite_frames.tres" id="9_a510d"]
-[ext_resource type="PackedScene" uid="uid://ef1fnor4usrr" path="res://scenes/wolf.tscn" id="12_mrwte"]
 [ext_resource type="Texture2D" uid="uid://dbo63j56ueuxl" path="res://art/BattleBG/Stormy_Mountains_Background.png" id="13_3lv5y"]
-[ext_resource type="Script" path="res://scripts/combat/technique.gd" id="13_gkors"]
 [ext_resource type="Texture2D" uid="uid://cwv5qoth3qh2" path="res://art/BattleBG/Stormy_Mountains_Front_Clouds.png" id="14_1yvyo"]
+[ext_resource type="PackedScene" uid="uid://3eocclf8ybma" path="res://scenes/character.tscn" id="14_7dsb8"]
 [ext_resource type="Script" path="res://scenes/dueler.gd" id="14_fk51q"]
 [ext_resource type="Texture2D" uid="uid://dlewbq1xk1p17" path="res://art/BattleBG/Stormy_Mountains_Front_Path.png" id="14_kqrtm"]
 [ext_resource type="Texture2D" uid="uid://chtnaqm674to8" path="res://art/BattleBG/Stormy_Mountains_Mountain_3.png" id="14_smyri"]
 [ext_resource type="Texture2D" uid="uid://bcg7b6430p84n" path="res://art/BattleBG/Stormy_Mountains_Mountain_1.png" id="15_l2u7h"]
 [ext_resource type="Texture2D" uid="uid://cphoquvkare3l" path="res://art/BattleBG/Stormy_Mountains_Background_Cloud_1.png" id="15_l05ij"]
-[ext_resource type="Resource" uid="uid://budceak4a474d" path="res://resources/combat/techniques/scratch.tres" id="15_x20rx"]
 [ext_resource type="Texture2D" uid="uid://pbuywkhsuej6" path="res://art/BattleBG/Stormy_Mountains_Mountain_2.png" id="16_2r0ne"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="16_5psj3"]
 [ext_resource type="Texture2D" uid="uid://f0gkaqv6c7bn" path="res://art/BattleBG/Stormy_Mountains_Background_Cloud_2.png" id="16_x1k28"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="17_bjumt"]
+[ext_resource type="PackedScene" uid="uid://ef1fnor4usrr" path="res://scenes/wolf.tscn" id="17_vgk8b"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="18_8jl44"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gmv4k"]
-atlas = ExtResource("3_5rlkv")
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jlvh"]
+atlas = ExtResource("5_lhkjh")
 region = Rect2(624, 246, 48, 4)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y2tqu"]
-atlas = ExtResource("3_5rlkv")
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqfvg"]
+atlas = ExtResource("5_lhkjh")
 region = Rect2(624, 230, 48, 4)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sxmw7"]
-atlas = ExtResource("3_5rlkv")
-region = Rect2(499, 145, 90, 30)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_skyke"]
 
-[node name="battle" type="Node2D" node_paths=PackedStringArray("cam", "party", "player")]
+[sub_resource type="Resource" id="Resource_dq3ad"]
+script = ExtResource("18_8jl44")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_tftuk"]
+script = ExtResource("18_8jl44")
+duration = 1.0
+transition = 1
+ease = 2
+
+[sub_resource type="Resource" id="Resource_uyjs0"]
+script = ExtResource("18_8jl44")
+duration = 0.6
+transition = 8
+ease = 1
+
+[node name="battle" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_4fkr6")
-cam = NodePath("party/Camera2D")
-party = NodePath("party")
-player = NodePath("party/Actor")
-scroll_speed = 0.0
 
-[node name="dueler" type="Node" parent="." node_paths=PackedStringArray("party", "opponents")]
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(356, 0)
+editor_only = true
+energy = 0.5
+metadata/_edit_lock_ = true
+
+[node name="Conductor" type="Node" parent="." node_paths=PackedStringArray("player", "opponent", "dueler", "follow_cam", "battle_cam", "attack_cam")]
+script = ExtResource("3_6btd8")
+player = NodePath("../Pixie")
+opponent = NodePath("../wolf")
+dueler = NodePath("../dueler")
+follow_cam = NodePath("../FollowCam")
+battle_cam = NodePath("../BattleCam")
+attack_cam = NodePath("../AttackCam")
+
+[node name="dueler" type="Node" parent="."]
 script = ExtResource("14_fk51q")
-party = [NodePath("../party/Actor")]
-opponents = [NodePath("../opponents/wolf")]
-
-[node name="queue" type="Node" parent="."]
 
 [node name="battle_ui" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="GutsBar" type="TextureProgressBar" parent="battle_ui"]
-offset_left = 248.0
-offset_top = 352.0
-offset_right = 264.0
-offset_bottom = 356.0
+[node name="Control" type="Control" parent="battle_ui" node_paths=PackedStringArray("life_left", "life_right", "guts_left", "guts_right")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_s5udl")
+life_left = NodePath("HealthBarL")
+life_right = NodePath("HealthBarR")
+guts_left = NodePath("GutsBarL")
+guts_right = NodePath("GutsBarR")
+metadata/_edit_lock_ = true
+
+[node name="GutsBarL" type="TextureProgressBar" parent="battle_ui/Control"]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.977778
+anchor_right = 0.4
+anchor_bottom = 0.988889
 value = 50.0
 fill_mode = 1
 nine_patch_stretch = true
@@ -62,32 +104,77 @@ stretch_margin_left = 8
 stretch_margin_top = 2
 stretch_margin_right = 8
 stretch_margin_bottom = 2
-texture_under = SubResource("AtlasTexture_gmv4k")
-texture_progress = SubResource("AtlasTexture_y2tqu")
+texture_under = SubResource("AtlasTexture_8jlvh")
+texture_progress = SubResource("AtlasTexture_sqfvg")
+tint_under = Color(1.5, 1.5, 1.5, 1)
+tint_progress = Color(1.5, 1.5, 1.5, 1)
+metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="battle_ui"]
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = -288.0
-offset_right = -400.0
-offset_bottom = 136.0
-grow_horizontal = 2
-texture = SubResource("AtlasTexture_sxmw7")
-expand_mode = 1
+[node name="GutsBarR" type="TextureProgressBar" parent="battle_ui/Control"]
+modulate = Color(1, 1, 1, 0.5)
+layout_mode = 2
+anchor_left = 0.6
+anchor_top = 0.977778
+anchor_right = 0.898438
+anchor_bottom = 0.988889
+value = 50.0
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_top = 2
+stretch_margin_right = 8
+stretch_margin_bottom = 2
+texture_under = SubResource("AtlasTexture_8jlvh")
+texture_progress = SubResource("AtlasTexture_sqfvg")
+tint_under = Color(1.5, 1.5, 1.5, 1)
+tint_progress = Color(1.5, 1.5, 1.5, 1)
+metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0, 0, 0, 1)
+[node name="HealthBarL" type="ProgressBar" parent="battle_ui/Control"]
+texture_repeat = 2
+custom_minimum_size = Vector2(84, 10)
+layout_mode = 2
+anchor_left = 0.0125
+anchor_top = 0.122222
+anchor_right = 0.028125
+anchor_bottom = 0.122222
+offset_top = 300.0
+offset_right = 290.0
+offset_bottom = 310.0
+rotation = -1.5708
+theme = ExtResource("4_pbe1p")
+step = 1.0
+value = 60.0
+rounded = true
+show_percentage = false
+metadata/_edit_lock_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="HealthBarR" type="ProgressBar" parent="battle_ui/Control"]
+texture_repeat = 2
+custom_minimum_size = Vector2(84, 10)
+layout_mode = 2
+anchor_left = 0.975
+anchor_top = 0.122222
+anchor_right = 0.990625
+anchor_bottom = 0.122222
+offset_left = -4.0
+offset_top = 300.0
+offset_right = 286.0
+offset_bottom = 310.0
+rotation = -1.5708
+theme = ExtResource("4_pbe1p")
+step = 1.0
+value = 60.0
+rounded = true
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true
 
 [node name="Background" type="Node2D" parent="."]
 y_sort_enabled = true
 metadata/_edit_lock_ = true
-
-[node name="PointLight2D" type="PointLight2D" parent="Background"]
-position = Vector2(320, 232)
-scale = Vector2(2.25, 1.45)
-texture = ExtResource("2_on6ei")
-texture_scale = 5.0
-height = 300.0
 
 [node name="MainClouds" type="Parallax2D" parent="Background"]
 y_sort_enabled = true
@@ -157,7 +244,7 @@ metadata/_edit_lock_ = true
 y_sort_enabled = true
 texture_repeat = 2
 scroll_scale = Vector2(0.8, 1)
-repeat_size = Vector2(640, 0)
+repeat_size = Vector2(1440, 0)
 metadata/_edit_lock_ = true
 
 [node name="SmallMountain1" type="Sprite2D" parent="Background/SmallMountain1"]
@@ -171,7 +258,7 @@ metadata/_edit_lock_ = true
 y_sort_enabled = true
 texture_repeat = 2
 scroll_scale = Vector2(0.7, 1)
-repeat_size = Vector2(640, 0)
+repeat_size = Vector2(840, 0)
 metadata/_edit_lock_ = true
 
 [node name="SmallMountain2" type="Sprite2D" parent="Background/SmallMountain2"]
@@ -208,20 +295,70 @@ autoplay = "rain"
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="party" type="Node2D" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="Background"]
+color = Color(0, 0, 0, 1)
 
-[node name="Actor" parent="party" instance=ExtResource("1_ajy51")]
-position = Vector2(112, 288)
-techniques = Array[ExtResource("13_gkors")]([ExtResource("15_x20rx")])
+[node name="Pixie" parent="." instance=ExtResource("14_7dsb8")]
+position = Vector2(88, 280)
+width = 32.0
 
-[node name="Camera2D" type="Camera2D" parent="party"]
-offset = Vector2(320, 0)
+[node name="wolf" parent="." instance=ExtResource("17_vgk8b")]
+position = Vector2(3288, 307)
+current_animation = "idle"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+physics_interpolation_mode = 2
+position = Vector2(318, 180)
 limit_top = 0
-limit_bottom = 0
+limit_bottom = 360
+limit_smoothed = true
 
-[node name="opponents" type="Node2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="Camera2D"]
+z_index = -1
+y_sort_enabled = true
+position = Vector2(10, 28)
+scale = Vector2(1.125, 0.725)
+texture = ExtResource("2_on6ei")
+texture_scale = 10.0
+height = 300.0
+metadata/_edit_lock_ = true
 
-[node name="wolf" parent="opponents" instance=ExtResource("12_mrwte")]
-position = Vector2(500, 300)
-techniques = Array[ExtResource("13_gkors")]([])
-current_animation = "idleB"
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("16_5psj3")
+
+[node name="FollowCam" type="Node2D" parent="." node_paths=PackedStringArray("follow_target")]
+position = Vector2(318, 180)
+script = ExtResource("17_bjumt")
+priority = 5
+follow_mode = 2
+follow_target = NodePath("../Pixie")
+tween_resource = SubResource("Resource_dq3ad")
+follow_offset = Vector2(230, 0)
+follow_damping = true
+limit_top = 0
+limit_bottom = 360
+
+[node name="BattleCam" type="Node2D" parent="." node_paths=PackedStringArray("follow_targets")]
+position = Vector2(1698, 180)
+script = ExtResource("17_bjumt")
+priority = 2
+follow_mode = 3
+follow_targets = [NodePath("../Pixie"), NodePath("../wolf")]
+tween_resource = SubResource("Resource_tftuk")
+auto_zoom = true
+auto_zoom_max = 1.3
+auto_zoom_margin = Vector4(40, 0, 100, 0)
+limit_top = 0
+limit_bottom = 360
+
+[node name="AttackCam" type="Node2D" parent="." node_paths=PackedStringArray("follow_targets")]
+position = Vector2(1688, 180)
+script = ExtResource("17_bjumt")
+priority = 1
+follow_mode = 3
+follow_targets = [NodePath("../Pixie"), NodePath("../wolf")]
+tween_resource = SubResource("Resource_uyjs0")
+auto_zoom = true
+auto_zoom_margin = Vector4(10, 0, 20, 0)
+limit_top = 0
+limit_bottom = 360

@@ -3,7 +3,7 @@
 class_name Technique extends Resource
 # enum {TIER_E, TIER_D, TIER_C , TIER_B, TIER_A, TIER_S}
 
-@export var name: String
+@export_placeholder("Enter name...") var name: String 
 
 @export var icon: Texture2D
 
@@ -49,7 +49,7 @@ func get_rating(prop: StringName) -> String:
 			if 9 < sharp: return "D"
 
 	return "E"
-			
+
 
 func _validate_property(property: Dictionary) -> void:
 	match property.name:
